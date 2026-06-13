@@ -1,0 +1,276 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>I Am So Sorry Baby</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600&display=swap');
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Outfit', sans-serif;
+            -webkit-tap-highlight-color: transparent;
+        }
+
+        body {
+            background: #fff0f3;
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            overflow: hidden;
+            background: linear-gradient(135deg, #ffdde1 0%, #ee9ca7 100%);
+        }
+
+        /* Crazy Floating Animations */
+        .floating-element {
+            position: absolute;
+            font-size: 30px;
+            pointer-events: none;
+            z-index: 1;
+            animation: floatAround 8s linear infinite;
+            opacity: 0.8;
+        }
+
+        @keyframes floatAround {
+            0% { transform: translateY(110vh) translateX(0) rotate(0deg); }
+            100% { transform: translateY(-20vh) translateX(100px) rotate(360deg); }
+        }
+
+        /* Glassmorphism Book Card */
+        .book-wrapper {
+            width: 90%;
+            max-width: 450px;
+            height: 600px;
+            position: relative;
+            z-index: 10;
+        }
+
+        .page {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            background: rgba(255, 255, 255, 0.3);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border: 1px solid rgba(255, 255, 255, 0.5);
+            border-radius: 40px;
+            padding: 40px 30px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            box-shadow: 0 25px 50px rgba(0,0,0,0.1);
+            transition: all 0.8s cubic-bezier(0.645, 0.045, 0.355, 1);
+            opacity: 0;
+            transform: translateX(100%) rotate(10deg);
+            pointer-events: none;
+        }
+
+        .page.active {
+            opacity: 1;
+            transform: translateX(0) rotate(0deg);
+            pointer-events: auto;
+        }
+
+        .page.exit {
+            opacity: 0;
+            transform: translateX(-100%) rotate(-10deg);
+        }
+
+        .big-emoji {
+            font-size: 80px;
+            margin-bottom: 20px;
+            filter: drop-shadow(0 10px 10px rgba(0,0,0,0.1));
+        }
+
+        h2 {
+            color: #c2185b;
+            font-size: 1.6rem;
+            margin-bottom: 15px;
+            font-weight: 600;
+        }
+
+        .message {
+            color: #4a4a4a;
+            font-size: 1.15rem;
+            line-height: 1.8;
+            font-weight: 400;
+        }
+
+        /* Progress Bar */
+        .nav-container {
+            position: absolute;
+            bottom: -80px;
+            width: 100%;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .btn-next {
+            background: #ff4d6d;
+            color: white;
+            border: none;
+            padding: 15px 40px;
+            border-radius: 50px;
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            box-shadow: 0 10px 20px rgba(255, 77, 109, 0.3);
+            transition: 0.3s;
+        }
+
+        .btn-next:active {
+            transform: scale(0.95);
+        }
+
+        .dots {
+            display: flex;
+            gap: 10px;
+        }
+
+        .dot {
+            width: 10px;
+            height: 10px;
+            background: rgba(255, 255, 255, 0.5);
+            border-radius: 50%;
+            transition: 0.3s;
+        }
+
+        .dot.active {
+            background: #ff4d6d;
+            width: 30px;
+            border-radius: 10px;
+        }
+
+        /* Special Foodie Hint */
+        .food-hint {
+            margin-top: 15px;
+            font-style: italic;
+            color: #d81b60;
+            font-size: 0.9rem;
+        }
+    </style>
+</head>
+<body>
+
+    <div id="objects-layer"></div>
+
+    <div class="book-wrapper">
+        <!-- Page 1: Recognition -->
+        <div class="page active" id="p1">
+            <div class="big-emoji">🐼</div>
+            <h2>Main Jaanta Hoon</h2>
+            <div class="message">
+                maine tumhara wo poora lamba sa message padha aur mujhe sach mein feel hua ki maine tumhara dil kitna zyada dukhaya hai itna gussa hona tumhara bilkul sahi hai kyunki meri wajah se tumhe itna sab likhna pada mujhe apne aap par bohot bura lag raha hai 🥺
+            </div>
+        </div>
+
+        <!-- Page 2: Responsibility -->
+        <div class="page" id="p2">
+            <div class="big-emoji">🐰</div>
+            <h2>Sirf Meri Galti Hai</h2>
+            <div class="message">
+                main koi bahana nahi banaunga ki kya hua tha bas itna kahunga ki galti meri thi aur maine bina soche samjhe tumhe hurt kiya main tumhari har ek baat ko accept karta hoon aur mujhe ehsaas hai ki maine kya khoya hai tum mere liye sabse upar ho 💔
+            </div>
+        </div>
+
+        <!-- Page 3: The Foodie Peace Treaty -->
+        <div class="page" id="p3">
+            <div class="big-emoji">🍔</div>
+            <h2>Thoda Sa Smile Kar Do</h2>
+            <div class="message">
+                mujhe pata hai tum gusse mein panda jaisi lagti ho par jab tum hasti ho toh meri duniya sabse best ho jati hai please mujhse itna gussa mat raho main tumhare liye tumhare fav burgers aur fries lekar aaunga bas ek baar thoda sa smile kar do na 🍟✨
+            </div>
+        </div>
+
+        <!-- Page 4: Commitment -->
+        <div class="page" id="p4">
+            <div class="big-emoji">🧸</div>
+            <h2>Wada Raha</h2>
+            <div class="message">
+                main sach mein badlunga aur khud par kaam karunga taaki aage se tumhe meri kisi baat se rona na pade tumhara trust mere liye sab kuch hai aur main usse phir se jeetna chahta hoon please mujhe ek last mauka de do kyunki main tumhe khona nahi chahta 🧿
+            </div>
+        </div>
+
+        <!-- Page 5: Final Love -->
+        <div class="page" id="p5">
+            <div class="big-emoji">💖</div>
+            <h2>I Love You So Much</h2>
+            <div class="message">
+                bas ab maan jao na tumhare bina sab kuch adhoora lagta hai tum meri sabse pyaari aur fav insaan ho aur main hamesha tumhare saath rehna chahta hoon main hamesha tumhara rahoonga aur tumhe bohot saara pyaar doonga I am so sorry 🌹
+            </div>
+        </div>
+
+        <div class="nav-container">
+            <button class="btn-next" onclick="goNext()">Next Wali Baat ✨</button>
+            <div class="dots">
+                <div class="dot active"></div>
+                <div class="dot"></div>
+                <div class="dot"></div>
+                <div class="dot"></div>
+                <div class="dot"></div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        let current = 0;
+        const pages = document.querySelectorAll('.page');
+        const dots = document.querySelectorAll('.dot');
+        const btn = document.querySelector('.btn-next');
+
+        function goNext() {
+            if (current < pages.length - 1) {
+                pages[current].classList.remove('active');
+                pages[current].classList.add('exit');
+                current++;
+                pages[current].classList.add('active');
+                updateDots();
+            } else {
+                btn.innerText = "Love You Forever! ❤️";
+                createExplosion();
+            }
+
+            if (current === pages.length - 1) {
+                btn.innerText = "Maan Jao Na Baby ❤️";
+            }
+        }
+
+        function updateDots() {
+            dots.forEach((dot, idx) => {
+                dot.classList.toggle('active', idx === current);
+            });
+        }
+
+        // Create Floating Bunnies, Pandas, Burgers, Fries
+        const items = ['🐰', '🐼', '🍔', '🍟', '🍕', '🧁', '❤️', '✨'];
+        const layer = document.getElementById('objects-layer');
+
+        function spawn() {
+            const el = document.createElement('div');
+            el.className = 'floating-element';
+            el.innerHTML = items[Math.floor(Math.random() * items.length)];
+            el.style.left = Math.random() * 100 + 'vw';
+            el.style.animationDuration = (Math.random() * 4 + 4) + 's';
+            el.style.fontSize = (Math.random() * 20 + 20) + 'px';
+            layer.appendChild(el);
+            setTimeout(() => el.remove(), 8000);
+        }
+
+        setInterval(spawn, 500);
+
+        function createExplosion() {
+            for(let i=0; i<30; i++) {
+                setTimeout(spawn, i * 50);
+            }
+        }
+    </script>
+</body>
+</html>
